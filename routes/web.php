@@ -20,5 +20,5 @@ Route::get('/', function () {
 });
 
 Route::get('/send-mail', function () {
-    Mail::to('test@test.com')->send(new FirstMail());
+    Mail::to('test@test.com')->send(new FirstMail("Ranil"));
 });
