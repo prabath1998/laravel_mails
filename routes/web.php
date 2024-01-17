@@ -1,6 +1,7 @@
 <?php
 
 use App\Mail\FirstMail;
+use App\Mail\SecondMail;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
@@ -22,7 +23,8 @@ Route::get('/', function () {
 
 Route::get('/send-mail', function () {
     $user = Auth::user();
-    Mail::to($user->email)->send(new FirstMail($user->name));
+    // Mail::to($user->email)->send(new FirstMail($user->name));
+    Mail::to($user->email)->send(new SecondMail());
 });
 
 Route::middleware([
