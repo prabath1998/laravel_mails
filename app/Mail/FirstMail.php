@@ -30,7 +30,11 @@ class FirstMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'New Mail',
+            subject: 'Order Shipped',
+            tags: ['shipment'],
+            metadata: [
+                'order_id' => '45632pop',
+            ],
         );
     }
 
@@ -52,7 +56,8 @@ class FirstMail extends Mailable
     public function attachments(): array
     {
         return [
-            Attachment::fromPath(storage_path('app/public/pic.jpeg')),
+            Attachment::fromStorageDisk('public','pic.jpeg')
+                ->as('bird.jpeg'),
         ];
     }
 }
