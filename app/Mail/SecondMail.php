@@ -10,7 +10,7 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class SecondMail extends Mailable implements ShouldQueue
+class SecondMail extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -40,7 +40,7 @@ class SecondMail extends Mailable implements ShouldQueue
         return new Content(
             markdown: 'mails.second-mail',
             with: [
-                'url' => route('dashboard'),
+                'url' => route('/'),
             ],
         );
     }

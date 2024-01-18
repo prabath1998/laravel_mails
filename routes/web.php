@@ -1,5 +1,6 @@
 <?php
 
+use App\Jobs\FirstJob;
 use App\Mail\FirstMail;
 use App\Mail\SecondMail;
 use Illuminate\Support\Facades\Auth;
@@ -24,7 +25,10 @@ Route::get('/', function () {
 Route::get('/send-mail', function () {
     $user = Auth::user();
     // Mail::to($user->email)->send(new FirstMail($user->name));
-    Mail::to($user->email)->send(new SecondMail());
+    // Mail::to($user->email)->queue(new SecondMail());
+    $delay = now()->addMinutes(1);
+    // FirstJob::dispatch();
+    dispatch(new FirstJob)->delay($delay);
 });
 
 Route::middleware([
